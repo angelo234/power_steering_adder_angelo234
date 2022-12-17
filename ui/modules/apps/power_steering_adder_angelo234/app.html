@@ -1,0 +1,21 @@
+<div style="height:100%; width: 100%; text-align:center;">
+	<style>
+		.table-element {
+			width: 50%; 
+			text-align: center;
+			padding-right: 4px; 
+			margin: 0;
+		}
+		.the-button {
+			width: 200px;
+			font-size: 12.5px;
+		}
+	</style>
+	
+	<md-button ng-click="onButtonClicked()" class="md-raised md-primary" style="color: white;" flexmd-no-ink>Add Power Steering</md-button>
+	
+	<div style="display: inline-block;">
+		<input type="checkbox" ng-model="add_power_steering" ng-click="onCheckboxClicked()">
+		Add Power Steering Automatically
+	</div>
+</div>

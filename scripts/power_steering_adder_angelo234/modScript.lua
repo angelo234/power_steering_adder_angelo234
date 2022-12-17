@@ -1,0 +1,1 @@
+registerCoreModule('scripts/power_steering_adder_angelo234/extension')

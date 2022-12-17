@@ -1,0 +1,10 @@
+{
+  "name" : "Power Steering Adder Settings",
+  "author": "angelo234",
+  "version": "0.1",
+  "description": "Power Steering Adder Settings app",
+  "directive": "powerSteeringAdderAngelo234",
+  "domElement": "<power-steering-adder-angelo234></power-steering-adder-angelo234>",
+  "css": { "width": "200px", "height": "100px", "min-width": "200px", "min-height": "50px", "top": "200px", "right": "200px"}
+}
+   

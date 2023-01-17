@@ -9,11 +9,12 @@ local wait_to_add = false
 local respawn_vehicle_flag = false
 
 local function addPowerSteering()
-  local veh = be:getPlayerVehicle(0)
   local veh_data = extensions.core_vehicle_manager.getPlayerVehicleData()
-  local veh_name = veh:getJBeamFilename()
+  if not veh_data then return end
 
   local all_slots = jbeam_io.getAvailableSlotMap(veh_data.ioCtx)
+  if not all_slots then return end
+
   local chosen_parts = veh_data.chosenParts
 
   -- Find power steering slot and try to add power steering (adaptive steering first)
@@ -53,10 +54,7 @@ local function addPowerSteering()
   -- If power steering slot found then add it (resets vehicle to actually add it)
   if added_part then
     respawn_vehicle_flag = true
-
     extensions.core_vehicle_partmgmt.setPartsConfig(chosen_parts, true)
-  else
-    respawn_vehicle_flag = false
   end
 end
 
@@ -68,9 +66,7 @@ local function onVehicleSpawned(vid)
     wait_to_add = true
   end
 
-  if respawn_vehicle_flag then
-    respawn_vehicle_flag = false
-  end
+  respawn_vehicle_flag = false
 end
 
 local function setAddPowerSteeringAutomatically(add)
@@ -84,8 +80,8 @@ local function onUpdate(dt)
     local veh = be:getPlayerVehicle(0)
 
     if veh then
-      addPowerSteering()
       wait_to_add = false
+      addPowerSteering()
     end
   end
 end
@@ -101,7 +97,7 @@ local function onExtensionLoaded()
     data["add_power_steering"] = true
     json_data = jsonEncode(data)
 
-    writeFile(settings_file_path, json_data, true)
+    writeFile(settings_file_path, json_data)
   end
 
   local data = jsonDecode(json_data)
